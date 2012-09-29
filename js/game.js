@@ -1,44 +1,59 @@
 //TODO(chebert): This all needs to be in a function.
 
-var screen_width = 640;
-var screen_height = 480;
-Crafty.init(screen_width, screen_height);
-Crafty.background('rgb(230, 230, 230)');
-
-CreatePlatform = function(x, w, y, h) {
-   Crafty.e("2D, Canvas, Color, Platform")
+CreatePlatform = function(x, w, y, h, component) {
+   component = component || "";
+   var platform = Crafty.e("2D, Canvas, Color, Platform")
          .color("black")
          .attr({h:h, y:y, w:w, x:x});
+   platform.addComponent(component);
+   return platform;
 };
 
-//TODO: this really shouldn't be a separate function from above, but since
-// I'm not very experienced with JS this is the best I came up with.
-CreatePlatformLarge = function(x, w, y, h) {
-   Crafty.e("2D, Canvas, Color, Platform, Large")
-         .color("black")
-         .attr({h:h, y:y, w:w, x:x});
+var row_count = 16;
+var col_count = 12;
+var grid_width = screen_width / col_count;
+var grid_height = screen_height / row_count;
+CreateGridPlatform = function(row, col, width, height, component) {
+   var x = col * grid_width;
+   var y = row * grid_height;
+   var w = width * grid_width;
+   var h = height * grid_height;
+   return CreatePlatform(x, w, y, h, component);
+};
+
+CreateFloor = function(component) {
+   return CreateGridPlatform(row_count-2, 0, col_count, 2, component);
 };
 
 CreateMiniatureLevel = function() {
-   //Floor
-   CreatePlatform(0, screen_width, screen_height - 80, 80);
+   var level = {
+      "tile": {
+         "width": "32",
+         "height": "32"
+      },
+      "rows": "12",
+      "cols": "16",
+      "map": { }
+   }
+   for (i = 0; i < col_count; i++) {
+      level.map.Platform.push({"row":row_count-2, "col":i});
+   }
    //Ceiling
-   //TODO: lots of constants can be factored out of here
-   CreatePlatform(-40, 720, -40, 40);
+   CreateGridPlatform(-1, -1, col_count+2, 1);
 
    //Left Platform
-   CreatePlatform(50, 150, 270, 27);
+   CreateGridPlatform(10, 1, 3, 1);
    //Right Platform
-   CreatePlatform(300, 200, 200, 27);
+   CreateGridPlatform(7, 6, 4, 1);
 
    //Left Wall
-   CreatePlatform(-40, 40, 0, 480);
+   CreateGridPlatform(0, -1, 1, row_count);
    //Right Wall
-   CreatePlatform(screen_width, 40, 0, 480);
+   CreateGridPlatform(0, col_count, 1, row_count);
 };
 
-Scale = function(scale) {
-   Crafty("Platform").each(function() {
+ScaleAnimate = function(scale, component) {
+   Crafty(component).each(function() {
       var matrix = new Crafty.math.Matrix2D()
             .preScale(scale)
             .preTranslate(screen_width*(1-scale)/2.0,
@@ -58,8 +73,8 @@ Scale = function(scale) {
 
 //TODO: again with the lack of JS experience making this a separate function
 // from above.
-ScaleLarge = function(scale) {
-   Crafty("Large").each(function() {
+ScaleOnce = function(scale, component) {
+   Crafty(component).each(function() {
       var matrix = new Crafty.math.Matrix2D()
             .preScale(scale)
             .preTranslate(screen_width*(1-scale)/2.0,
@@ -70,20 +85,19 @@ ScaleLarge = function(scale) {
       this.y = position.y;
       this.w *= scale;
       this.h *= scale;
-      console.log("hello");
    });
 };
 
 // Large Level
 CreateLargeLevel = function(scale) {
-   CreatePlatformLarge(0, screen_width, screen_height - 80, 80);
+   CreateFloor("Large");
    //Right Platform
-   CreatePlatformLarge(300, 200, 200, 27);
+   CreateGridPlatform(6, 6, 4, 1, "Large");
    //Floor
-   ScaleLarge(1.0/scale);
+   ScaleOnce(1.0/scale, "Large");
 };
 
 var scale = 0.05;
-CreateMiniatureLevel();
-CreateLargeLevel(scale);
-Scale(scale);
+//CreateMiniatureLevel();
+//CreateLargeLevel(scale);
+//ScaleAnimate(scale, "Platform");
