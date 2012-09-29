@@ -1,3 +1,5 @@
+//TODO(chebert): This all needs to be in a function.
+
 var screen_width = 640;
 var screen_height = 480;
 Crafty.init(screen_width, screen_height);
