@@ -34,6 +34,7 @@ function initPlayer() {
          onVines: false,
          hasHands: false,
          hasHead: false,
+         goingRight: true,
 
          init: function() {
             this.requires("Collision");
@@ -55,8 +56,20 @@ function initPlayer() {
                }
             });
 
+            // Sprite changing event
+            this.bind("Change", function() {
+            });
+
             // Don't run into solid things like doors
             this.bind('Moved', function(from) {
+               if (this.x > from.x && !this.goingRight) {
+                  this.goingRight = true;
+                  this.unflip('X');
+               } else if (this.x < from.x && this.goingRight) {
+                  this.goingRight = false;
+                  this.flip('X');
+               }
+
                if (this.hit('solid')) {
                   this.attr({'x': from.x, 'y': from.y});
                }
@@ -122,7 +135,7 @@ function loadHandsPica(x, y) {
 }
 
 function loadBasePica(height, width, x, y, jumpSpeed, runSpeed, picaType, animationName, animationRow) {
-   var pica = Crafty.e("2D, Canvas, pica, " + picaType)
+   var pica = Crafty.e("2D, Canvas, pica, Sprite, " + picaType)
          .attr({'w': height, 'h': width, 'x': x, 'y': y})
          .addComponent("Twoway")
          .twoway(runSpeed, jumpSpeed)
