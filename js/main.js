@@ -38,4 +38,5 @@ Crafty.scene("loading", function() {
 
 Crafty.scene("stage_01",function() {
    var pica = loadPica('pixel-pica', 10, 10);
+   newRoamer(20, 10);
 });
