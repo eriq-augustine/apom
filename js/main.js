@@ -13,14 +13,10 @@ Crafty.scene("test_stage", function() {
    var floor = Crafty.e("2D, Canvas, Color, Collision, Floor")
          .color("blue")
          .attr({h:30, w:400, x:0, y:380 });
-  
-   var door = Crafty.e("2D, Canvas, Color, Collision, door")
+
+   var door = Crafty.e("2D, Canvas, Color, door, solid")
          .color("pink")
          .attr({h:100, w:20, x:200, y:280 });
-
-   pica.addComponent("Collision").onHit("door", function(obj) {
-      this.cancelSlide();
-   });
 
    // Add the switch
    loadDoorSwitch(pica, 100, 350, door);
@@ -33,7 +29,5 @@ Crafty.scene("loading", function() {
 });
 
 Crafty.scene("stage_01",function() {
-   Crafty.background("#FFF");
-   
-   Crafty.e("2D, Canvas, pixel-pica").attr({x:0, y:0});
+   var pica = loadPica('pixel-pica', 10, 10);
 });

@@ -18,6 +18,13 @@ function loadPica(type, x, y) {
    pica.addComponent('Gravity').gravity("Floor");
    pica.addComponent("Collision");
 
+   // Don't run into solid things like doors
+   pica.bind('Moved', function(from) {
+      if (this.hit('solid')) {
+         this.attr({'x': from.x, 'y': from.y});
+      }
+   });
+
    return pica;
 }
 
