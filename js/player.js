@@ -26,11 +26,14 @@ function downIsDown() {
 
 function initPlayer() {
    Crafty.sprite(32, '/graphics/pica.png', {'pixel-pica': [0, 0],
-                                            'leg-pica': [1, 0]});
+                                            'legs-pica': [1, 0],
+                                            'head-pica': [2, 0],
+                                            'hands-pica': [3, 0]});
 
    Crafty.c('pica', {
          onVines: false,
          hasHands: false,
+         hasHead: false,
 
          init: function() {
             this.requires("Collision");
@@ -59,8 +62,12 @@ function initPlayer() {
                }
             });
          },
-         setHands: function(val) {
-            this.hasHands = val;
+         hands: function() {
+            this.hasHands = true;
+            return this;
+         },
+         head: function() {
+            this.hasHead = true;
             return this;
          }
    });
@@ -76,6 +83,9 @@ function loadPica(type, x, y) {
       case 'legs-pica':
          pica = loadLegsPica(x, y);
          break;
+      case 'head-pica':
+         pica = loadHeadPica(x, y);
+         break;
       case 'hands-pica':
          pica = loadHandsPica(x, y);
          break;
@@ -89,45 +99,36 @@ function loadPica(type, x, y) {
 }
 
 function loadPixelPica(x, y) {
-   var height = 16;
-   var width = 16;
-
-   var jumpSpeed = 2;
-   var runSpeed = 5;
-
-   var pica = Crafty.e("2D, Canvas, pixel-pica").attr({'w': width, 'h': height, 'x': x, 'y': y});
-
-   pica.addComponent("Twoway").twoway(runSpeed, jumpSpeed);
-
-   pica.addComponent('SpriteAnimation').animate('pixel-blink', 0, 0, 3).animate('pixel-blink', 30, -1);
-
-   return pica;
+   return loadBasePica(16, 16, x, y, 2, 3, 'pixel-pica', 'pixel-bling', 0)
 }
 
 function loadLegsPica(x, y) {
-   var jumpSpeed = 7;
-   var runSpeed = 5;
+   return loadBasePica(32, 32, x, y, 5, 5, 'legs-pica', 'leg-run', 1)
+}
 
-   var pica = Crafty.e("2D, Canvas, pica, legs-pica")
-         .attr({'w': 32, 'h': 32, 'x': x, 'y': y});
-
-   pica.addComponent("Twoway").twoway(runSpeed, jumpSpeed);
-   pica.addComponent('SpriteAnimation').animate('leg-run', 0, 1, 3).animate('leg-run', 30, -1);
+function loadHeadPica(x, y) {
+   var pica = loadBasePica(32, 32, x, y, 5, 5, 'head-pica', 'head-run', 2)
+         .head();
 
    return pica;
 }
 
-// TODO(eriq): Real settings, just for testing now.
 function loadHandsPica(x, y) {
-   var jumpSpeed = 7;
-   var runSpeed = 5;
+   var pica = loadBasePica(32, 32, x, y, 5, 5, 'hands-pica', 'hand-run', 3)
+         .head()
+         .hands();
 
-   var pica = Crafty.e("2D, Canvas, pica, leg-pica")
-         .attr({'w': 32, 'h': 32, 'x': x, 'y': y})
-         .setHands(true);
+   return pica;
+}
 
-   pica.addComponent("Twoway").twoway(runSpeed, jumpSpeed);
-   pica.addComponent('SpriteAnimation').animate('leg-run', 0, 1, 3).animate('leg-run', 30, -1);
+function loadBasePica(height, width, x, y, jumpSpeed, runSpeed, picaType, animationName, animationRow) {
+   var pica = Crafty.e("2D, Canvas, pica, " + picaType)
+         .attr({'w': height, 'h': width, 'x': x, 'y': y})
+         .addComponent("Twoway")
+         .twoway(runSpeed, jumpSpeed)
+         .addComponent('SpriteAnimation')
+         .animate(animationName, 0, animationRow, 3)
+         .animate(animationName, 30, -1);
 
    return pica;
 }
