@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
    Crafty.init(640,480);
    Crafty.canvas.init();
 
+   initPlayer();
 
    //Crafty.scene("loading");
    Crafty.scene("test_stage");
@@ -9,7 +10,8 @@ document.addEventListener('DOMContentLoaded', function () {
 
 Crafty.scene("test_stage", function() {
    //loadPica('pixel-pica', 10, 10);
-   var pica = loadPica('leg-pica', 10, 100);
+   //var pica = loadPica('legs-pica', 10, 100);
+   var pica = loadPica('hands-pica', 10, 100);
    var floor = Crafty.e("2D, Canvas, Color, Collision, Floor")
          .color("blue")
          .attr({h:30, w:400, x:0, y:380 });
@@ -18,12 +20,15 @@ Crafty.scene("test_stage", function() {
          .color("pink")
          .attr({h:100, w:20, x:200, y:280 });
 
+   Crafty.e('2D, Canvas, vines')
+         .attr({h:500, w:50, x:400, y:100 });
+
    // Add the switch
    loadDoorSwitch(pica, 100, 350, door);
 });
 
 Crafty.scene("loading", function() {
-   Crafty.load(["/graphics/pica.png"], function() {
+   Crafty.load(["/graphics/pica.png", "/graphics/env.png"], function() {
       Crafty.scene("main");
    });
 });
