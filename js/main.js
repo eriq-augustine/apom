@@ -19,6 +19,7 @@ Crafty.scene("test_stage", function() {
          .attr({h:100, w:20, x:200, y:280 });
 
    pica.addComponent("Collision").onHit("door", function(obj) {
+      console.log("You are hitting door.");
       this.cancelSlide();
    });
 
