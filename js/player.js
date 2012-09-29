@@ -25,8 +25,11 @@ function downIsDown() {
 }
 
 function initPlayer() {
-   Crafty.sprite(32, '/graphics/pica.png', {'pixel-pica': [0, 0],
-                                            'leg-pica': [1, 0]});
+   Crafty.sprite(32, '/graphics/pica.png', {
+      'pixel-pica': [0, 0],
+      'leg-pica':   [1, 0],
+      'hand-pica':  [2, 0]
+   });
 
    Crafty.c('pica', {
          onVines: false,
@@ -127,7 +130,7 @@ function loadHandsPica(x, y) {
          .setHands(true);
 
    pica.addComponent("Twoway").twoway(runSpeed, jumpSpeed);
-   pica.addComponent('SpriteAnimation').animate('leg-run', 0, 1, 3).animate('leg-run', 30, -1);
+   pica.addComponent('SpriteAnimation').animate('hand-run', 0, 2, 3).animate('hand-run', 30, -1);
 
    return pica;
 }
