@@ -2,6 +2,7 @@ document.addEventListener('DOMContentLoaded', function () {
    Crafty.init(800, 480);
    Crafty.canvas.init();
 
+   initEnv();
    initPlayer();
 
    Crafty.scene("test_stage");
@@ -25,6 +26,9 @@ Crafty.scene("test_stage", function() {
 
    Crafty.e('2D, Canvas, vines')
          .attr({h:300, w:50, x:400, y:80 });
+
+   Crafty.e('2D, Canvas, spikes, moving-spikes, trap')
+         .attr({h:32, w:32, x:500, y:348 });
 
    // Add the switch
    loadDoorSwitch(pica, 100, 350, door);

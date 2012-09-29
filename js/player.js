@@ -47,6 +47,11 @@ function initPlayer() {
                this.onVines = false;
             });
 
+            this.onHit('trap', function() {
+               //TODO: DEATH HERE
+               console.log('DIE!');
+            });
+
             this.bind('EnterFrame', function() {
                if (this.hasHands && this.onVines) {
                   if (upIsDown() && !downIsDown())
