@@ -10,9 +10,13 @@ document.addEventListener('DOMContentLoaded', function () {
 Crafty.scene("test_stage", function() {
    //loadPica('pixel-pica', 10, 10);
    var pica = loadPica('leg-pica', 10, 100);
+
+   // Viewport is the camera, follow the player
+   Crafty.viewport.follow(pica, 0, 0);
+
    var floor = Crafty.e("2D, Canvas, Color, Collision, Floor")
          .color("blue")
-         .attr({h:30, w:400, x:0, y:380 });
+         .attr({h:30, w:900, x:0, y:380 });
 
    var door = Crafty.e("2D, Canvas, Color, door, solid")
          .color("pink")
