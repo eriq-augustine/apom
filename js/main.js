@@ -1,11 +1,9 @@
 document.addEventListener('DOMContentLoaded', function () {
-   //Crafty.init(640,480);
-   Crafty.init(800, 800);
+   Crafty.init(800, 480);
    Crafty.canvas.init();
 
    initPlayer();
 
-   //Crafty.scene("loading");
    Crafty.scene("test_stage");
 });
 
