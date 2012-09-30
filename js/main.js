@@ -94,3 +94,9 @@ Crafty.scene("stage_03",function() {
    startGoal = loadLevel(window.level3);
    var pica = loadPica('head-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });
+
+Crafty.scene("stage_04",function() {
+   window.level = 4;
+   startGoal = loadLevel(window.level4);
+   var pica = loadPica('head-pica', startGoal.start.col * 32, startGoal.start.row * 32);
+});
