@@ -1,3 +1,8 @@
+#grid {
+   font-size: 8px;
+   text-align: center;
+}
+
 .container {
    width: 800px;
    margin: 0 auto;
@@ -17,4 +22,11 @@
 
 .footer {
    text-align: right;
+}
+
+.cell {
+   padding: 0;
+   margin: 0;
+   width: 32px;
+   height: 32px;
 }

@@ -1,0 +1,24 @@
+ <!DOCTYPE html>
+<html>
+   <head>
+      <title>apom</title>
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+   </head>
+   <body>
+      <div class="header">
+         <h1>Level Editor</h1>
+      </div>
+      <div>
+         <select id="element_selector">
+             <option value="Platform">Platform</option>
+             <option value="Vine">Vine</option>
+             <option value="">Empty</option>
+         </select>
+         <button onclick="saveOnClick()">Save</button>
+         <button>Load</button>
+      </div>
+      <div id="grid"></div>
+      <textarea id="map_dump"></textarea>
+      <script type="text/javascript" src="/js/editor.js"></script>
+   </body>
+</html>
