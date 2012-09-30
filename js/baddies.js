@@ -9,6 +9,10 @@ function initBaddies() {
    // Makes an entity roam a small area.
    Crafty.c('patrol', {
       init: function() {
+         this.addComponent('Timer');
+         this.bind('timerTick', function(e) {
+            this.move('e', 1);
+         });
       }
    });
 }
@@ -28,6 +32,5 @@ function newRoamer(x, y) {
          .addComponent("Collision")
          .addComponent('Gravity').gravity("Floor");
 
-    entity.addComponent('Tween').tween({x: 600}, 300)
     return entity;
 }
