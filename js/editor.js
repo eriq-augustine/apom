@@ -3,11 +3,18 @@ tableElementOnClick = function(element) {
 };
 
 loadOnClick = function() {
-   var level = eval(document.getElementById("map_dump").value);
+   var level = JSON.parse('{"rows":12,"cols":16,"tile":{"width":32,"height":32},"map":{"Platform":[{"row":2,"col":5}],"Vine":[{"row":2,"col":6},{"row":3,"col":5},{"row":3,"col":6} ,{"row":3,"col":7},{"row":4,"col":6},{"row":4,"col":7}]}}');
    makeTable(level.rows, level.cols);
+   for (var key in level.map) {
+      var elements = level.map[key];
+      for (var element in elements) {
+      }
+   }
 }
 
 saveOnClick = function() {
+   var rows = 12;
+   var cols = 16;
    var level = {};
    level.rows = rows;
    level.cols = cols;
