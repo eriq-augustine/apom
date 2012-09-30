@@ -12,9 +12,8 @@ function initBaddies() {
          this.timeout(this.tick, 2000);
       },
       tick: function() {
-         console.log('tick');
          this.move('w', 10);
-         this.timeout(this.tick, 3000*Math.random());
+         this.timeout(this.tick, 2500*Math.random());
       }
    });
 }
