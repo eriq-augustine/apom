@@ -5,7 +5,9 @@ function initEnv() {
                                            'spikes': [0, 1],
                                            'saw': [0, 2],
                                            'cactus': [0, 3],
-                                           'platform': [2, 3]});
+                                           'platform': [2, 3],
+                                           'start': [3, 3],
+                                           'goal': [3, 0]});
 
    Crafty.c('moving-spikes', {
       init: function() {
