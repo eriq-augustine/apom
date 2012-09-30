@@ -39,7 +39,7 @@ Crafty.scene("test_stage", function() {
          .attr({h:32, w:32, x:550, y:250});
 
    Crafty.e('2D, Canvas, cactus, punching-cactus, trap')
-         .attr({h:64, w:64, x:600, y:316});
+         .attr({h:32, w:32, x:600, y:348});
 
    // Add the switch
    loadDoorSwitch(pica, 100, 350, door);
