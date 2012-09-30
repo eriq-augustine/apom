@@ -47,6 +47,14 @@ function initPlayer() {
                this.onVines = false;
             });
 
+            this.onHit('trap', function() {
+               this.die();
+            });
+
+            this.onHit('baddie', function() {
+               this.die();
+            });
+
             this.bind('EnterFrame', function() {
                if (this.hasHands && this.onVines) {
                   if (upIsDown() && !downIsDown())
@@ -82,6 +90,10 @@ function initPlayer() {
          head: function() {
             this.hasHead = true;
             return this;
+         },
+         die: function() {
+            // TODO: Actually kill player
+            console.log('DIE!');
          }
    });
 }
