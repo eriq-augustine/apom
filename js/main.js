@@ -11,6 +11,8 @@ document.addEventListener('DOMContentLoaded', function () {
    // suppose to look the same, but DOM is suppose to be a little faster.
    window.renderMethod = 'Canvas';
 
+   document.getElementById('cjs_version').innerText = Crafty.getVersion();
+
    initEnv();
    initBaddies();
    initPlayer();
