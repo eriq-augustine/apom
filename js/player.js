@@ -48,8 +48,11 @@ function initPlayer() {
             });
 
             this.onHit('trap', function() {
-               //TODO: DEATH HERE
-               console.log('DIE!');
+               this.die();
+            });
+
+            this.onHit('baddie', function() {
+               this.die();
             });
 
             this.bind('EnterFrame', function() {
@@ -87,6 +90,10 @@ function initPlayer() {
          head: function() {
             this.hasHead = true;
             return this;
+         },
+         die: function() {
+            // TODO: Actually kill player
+            console.log('DIE!');
          }
    });
 }

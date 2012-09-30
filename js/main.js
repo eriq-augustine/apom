@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function () {
    Crafty.canvas.init();
 
    initEnv();
-   initPlayer();
    initBaddies();
+   initPlayer();
 
    Crafty.scene("test_stage");
 });
