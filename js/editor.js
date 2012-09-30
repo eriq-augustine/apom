@@ -1,10 +1,38 @@
+function sizeTableOnClick() {
+   rows = document.getElementById('numRows').value;
+   cols = document.getElementById('numCols').value;
+
+   if (window.tableRows == null) {
+      window.tableRows = rows;
+      window.tableCols = cols;
+      makeTable(rows, cols, null);
+      return;
+   }
+
+   var fillers = {};
+   var row, cell;
+   var grid = document.getElementById("grid_table");
+   for (i = 0; row = grid.rows[i]; i++) {
+      fillers[i] = {};
+      for (j = 0; cell = row.cells[j]; j++) {
+         if (cell.innerHTML)
+            fillers[i][j] = cell.innerHTML;
+         else
+            fillers[i][j] = '';
+      }
+   }
+   window.tableRows = rows;
+   window.tableCols = cols;
+   makeTable(rows, cols, fillers);
+}
+
 tableElementOnClick = function(element) {
    element.innerHTML = document.getElementById("element_selector").value;
-};
+}
 
 loadOnClick = function() {
    var level = eval(document.getElementById("map_dump").value);
-   makeTable(level.rows, level.cols);
+   makeTable(level.rows, level.cols, null);
 }
 
 saveOnClick = function() {
@@ -27,14 +55,18 @@ saveOnClick = function() {
       }
    }
    document.getElementById("map_dump").value = JSON.stringify(level);
-};
+}
 
-makeTable = function(rows, cols) {
+makeTable = function(rows, cols, fillers) {
    var table_text = '<table id="grid_table"border=1>';
    for (row = 0; row < rows; row++) {
       table_text += "<tr>";
       for (col = 0; col < cols; col++) {
-         table_text += '<td class="cell" onclick="tableElementOnClick(this)"></td>';
+         var cellText = '';
+         if (fillers && fillers[row] && fillers[row][col])
+            cellText = fillers[row][col];
+
+         table_text += '<td class="cell" onclick="tableElementOnClick(this)">' + cellText + '</td>';
       }
       table_text += "</tr>";
    }
@@ -42,4 +74,8 @@ makeTable = function(rows, cols) {
    document.getElementById("grid").innerHTML = table_text;
 }
 
-makeTable(12, 16);
+document.addEventListener('DOMContentLoaded', function() {
+   window.tableRows = null;
+   window.tableCols = null;
+   sizeTableOnClick();
+});
