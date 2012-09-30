@@ -30,12 +30,35 @@ tableElementOnClick = function(element) {
    element.innerHTML = document.getElementById("element_selector").value;
 }
 
+function setTableCell(row, col, innerHTML) {
+   var grid_row, cell;
+   var grid = document.getElementById("grid_table");
+   for (i = 0; grid_row = grid.rows[i]; i++) {
+      if (i == row) {
+         console.log(i);
+         for (j = 0; cell = grid_row.cells[j]; j++) {
+            if (j == col) {
+               cell.innerHTML = innerHTML;
+            }
+         }
+      }
+   }
+}
+
 loadOnClick = function() {
-   var level = eval(document.getElementById("map_dump").value);
-   makeTable(level.rows, level.cols, null);
+   var level = JSON.parse(document.getElementById("map_dump").value);
+   makeTable(level.rows, level.cols);
+   for (var key in level.map) {
+      var map_type = level.map[key];
+      for (ndx in map_type) {
+         setTableCell(map_type[ndx].row, map_type[ndx].col, key);
+      }
+   }
 }
 
 saveOnClick = function() {
+   var rows = 12;
+   var cols = 16;
    var level = {};
    level.rows = rows;
    level.cols = cols;
