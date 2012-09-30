@@ -9,10 +9,12 @@ function initBaddies() {
    // Makes an entity roam a small area.
    Crafty.c('patrol', {
       init: function() {
-         this.addComponent('Timer');
-         this.bind('timerTick', function(e) {
-            this.move('e', 1);
-         });
+         this.timeout(this.tick, 2000);
+      },
+      tick: function() {
+         console.log('tick');
+         this.move('w', 10);
+         this.timeout(this.tick, 3000*Math.random());
       }
    });
 }

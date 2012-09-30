@@ -14,9 +14,10 @@ Crafty.scene("test_stage", function() {
    //var pica = loadPica('legs-pica', 10, 100);
    var pica = loadPica('hands-pica', 10, 100);
 
-   newRoamer(20 + Math.floor(Math.random()*100), 10);
-   newRoamer(20 + Math.floor(Math.random()*100), 10);
-   newRoamer(20 + Math.floor(Math.random()*100), 10);
+   newRoamer(150, 10);
+   newRoamer(350, 10);
+   newRoamer(450, 10);
+   newRoamer(650, 10);
 
    // Viewport is the camera, follow the player
    Crafty.viewport.follow(pica, 0, 0);
