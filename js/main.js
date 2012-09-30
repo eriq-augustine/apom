@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
    initEnv();
    initPlayer();
+   initBaddies();
 
    Crafty.scene("test_stage");
 });
@@ -13,12 +14,16 @@ Crafty.scene("test_stage", function() {
    //var pica = loadPica('legs-pica', 10, 100);
    var pica = loadPica('hands-pica', 10, 100);
 
+   console.log(newRoamer(20 + Math.floor(Math.random()*100), 10));
+   console.log(newRoamer(20 + Math.floor(Math.random()*100), 10));
+   console.log(newRoamer(20 + Math.floor(Math.random()*100), 10));
+
    // Viewport is the camera, follow the player
    Crafty.viewport.follow(pica, 0, 0);
 
    var floor = Crafty.e("2D, Canvas, Color, Collision, Floor")
          .color("blue")
-         .attr({h:30, w:900, x:0, y:380 });
+         .attr({h:30, w:1000, x:0, y:380 });
 
    var door = Crafty.e("2D, Canvas, Color, door, solid")
          .color("pink")
