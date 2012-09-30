@@ -1,10 +1,12 @@
 document.addEventListener('DOMContentLoaded', function () {
-   Crafty.init(800, 480);
+   Crafty.init(2000, 1000);
    Crafty.canvas.init();
 
    // The viewport is buggy using .follow(), there is code to take care of it in
    // pica's EnterFrame instead.
    Crafty.viewport.init(800, 480);
+   Crafty.viewport.mouselook(true);
+   Crafty.viewport.clampToEntities = false;
 
    // Global render method that everyone should use.
    // The choice is between 'Canvas' and 'DOM'. They are
@@ -17,10 +19,16 @@ document.addEventListener('DOMContentLoaded', function () {
    initBaddies();
    initPlayer();
 
-   Crafty.scene("test_stage");
+   //Crafty.scene("test_stage");
+   Crafty.scene("stage_03");
 });
 
 Crafty.scene("test_stage", function() {
+   //TEST
+   console.log("TEST");
+   loadLevel(window.level1);
+   return;
+
    //loadPica('pixel-pica', 10, 10);
    //var pica = loadPica('legs-pica', 10, 100);
    var pica = loadPica('hands-pica', 10, 100);
@@ -61,5 +69,19 @@ Crafty.scene("loading", function() {
 });
 
 Crafty.scene("stage_01",function() {
-   var pica = loadPica('pixel-pica', 10, 10);
+   window.scene = "stage_01";
+   startGoal = loadLevel(window.level1);
+   var pica = loadPica('pixel-pica', startGoal.start.col * 32, startGoal.start.row * 32);
+});
+
+Crafty.scene("stage_02",function() {
+   window.scene = "stage_02";
+   startGoal = loadLevel(window.level2);
+   var pica = loadPica('legs-pica', startGoal.start.col * 32, startGoal.start.row * 32);
+});
+
+Crafty.scene("stage_03",function() {
+   window.scene = "stage_03";
+   startGoal = loadLevel(window.level3);
+   var pica = loadPica('head-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });

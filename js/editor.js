@@ -35,7 +35,6 @@ function setTableCell(row, col, innerHTML) {
    var grid = document.getElementById("grid_table");
    for (i = 0; grid_row = grid.rows[i]; i++) {
       if (i == row) {
-         console.log(i);
          for (j = 0; cell = grid_row.cells[j]; j++) {
             if (j == col) {
                cell.innerHTML = innerHTML;
@@ -47,6 +46,10 @@ function setTableCell(row, col, innerHTML) {
 
 loadOnClick = function() {
    var level = JSON.parse(document.getElementById("map_dump").value);
+
+   document.getElementById('numRows').value = level.rows;
+   document.getElementById('numCols').value = level.cols;
+
    makeTable(level.rows, level.cols);
    for (var key in level.map) {
       var map_type = level.map[key];
