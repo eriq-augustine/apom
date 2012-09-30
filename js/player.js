@@ -51,6 +51,11 @@ function initPlayer() {
                this.die();
             });
 
+            this.onHit('goal', function() {
+               // Success! Move to the next level.
+               nextLevel();
+            });
+
             this.onHit('baddie', function() {
                this.die();
             });
@@ -103,7 +108,7 @@ function initPlayer() {
             document.getElementById('deaths').innerText =
                parseInt(document.getElementById('deaths').innerText) + 1;
 
-            Crafty.scene(window.scene);
+            restartLevel();
          }
    });
 }

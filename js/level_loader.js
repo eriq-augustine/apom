@@ -8,9 +8,6 @@ function loadLevel(level) {
    var start = null;
    var goal = null;
 
-   //TEST
-   console.log("Loading level");
-
    for (var componentsKey in level.map) {
       var tiles = level.map[componentsKey];
 

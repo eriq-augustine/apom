@@ -20,8 +20,16 @@ document.addEventListener('DOMContentLoaded', function () {
    initPlayer();
 
    //Crafty.scene("test_stage");
-   Crafty.scene("stage_03");
+   Crafty.scene("stage_01");
 });
+
+function nextLevel() {
+   Crafty.scene("stage_0" + (window.level + 1));
+}
+
+function restartLevel() {
+   Crafty.scene("stage_0" + window.level);
+}
 
 Crafty.scene("test_stage", function() {
    //TEST
@@ -69,19 +77,19 @@ Crafty.scene("loading", function() {
 });
 
 Crafty.scene("stage_01",function() {
-   window.scene = "stage_01";
+   window.level = 1;
    startGoal = loadLevel(window.level1);
    var pica = loadPica('pixel-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });
 
 Crafty.scene("stage_02",function() {
-   window.scene = "stage_02";
+   window.level = 2;
    startGoal = loadLevel(window.level2);
    var pica = loadPica('legs-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });
 
 Crafty.scene("stage_03",function() {
-   window.scene = "stage_03";
+   window.level = 3;
    startGoal = loadLevel(window.level3);
    var pica = loadPica('head-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });
