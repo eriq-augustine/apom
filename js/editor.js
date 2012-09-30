@@ -43,15 +43,16 @@ saveOnClick = function() {
    level.tile.width = 32;
    level.tile.height = 32;
    level.map = {}
-   level.map.Platform = [];
-   level.map.Vine = [];
    var row;
    var cell;
    var grid = document.getElementById("grid_table");
    for (i = 0; row = grid.rows[i]; i++) {
       for (j = 0; cell = row.cells[j]; j++) {
-         if (cell.innerHTML)
+         if (cell.innerHTML != '') {
+            if (!level.map[cell.innerHTML])
+               level.map[cell.innerHTML] = [];
             level.map[cell.innerHTML].push({"row":i, "col":j});
+         }
       }
    }
    document.getElementById("map_dump").value = JSON.stringify(level);
