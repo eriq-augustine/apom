@@ -1,13 +1,14 @@
 var test_level = {
    "tile": {
-      "width": "40",
-      "height": "40"
+      "width": "32",
+      "height": "32"
    },
    "rows": "12",
    "cols": "16",
    "map": {
-      "Platform": { "row":"0", "col":"0" },
-      "Platform": { "row":"1", "col":"0" }
-      "Platform": { "row":"0", "col":"1" }
+      "Platform": [
+            {"row":"0", "col":"0"},
+            {"row":"1", "col":"0"}
+      ]
    }
 }

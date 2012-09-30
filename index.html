@@ -1,16 +1,32 @@
  <!DOCTYPE html>
 <html>
    <head>
-      <script type="text/javascript" src="./js/crafty-min.js"></script>
+      <title>apom</title>
+
+      <link rel="stylesheet" type="text/css" href="/css/style.css">
+
+      <script type="text/javascript" src="http://craftyjs.com/release/0.4.9/crafty.js"></script>
+      <!-- Commented out for debugging purposes
+      <script type="text/javascript" src="/js/crafty-min.js"></script>
+
+      -->
+      <script type="text/javascript" src="/js/main.js"></script>
+      <script type="text/javascript" src="/js/env.js"></script>
+      <script type="text/javascript" src="/js/player.js"></script>
+      <script type="text/javascript" src="/js/game.js"></script>
+      <script type="text/javascript" src="/js/level_loader.js"></script>
    </head>
    <body>
-      <script type="text/javascript">
-         var screen_width = 800;
-         var screen_height = 480;
-         Crafty.init(screen_width, screen_height);
-         Crafty.background('rgb(230, 230, 230)');
-      </script>
-      <script type="text/javascript" src="./js/game.js"></script>
-      <script type="text/javascript" src="./js/level_loader.js"></script>
+      <div class="container">
+         <div class="header">
+            <h1>A Picture of Myself</h1>
+         </div>
+
+         <div id="cr-stage"></div>
+
+         <div class="footer">
+            <a href="https://github.com/eriq-augustine/apom">code</a>
+         </div>
+      </div>
    </body>
 </html>

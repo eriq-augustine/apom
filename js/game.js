@@ -1,6 +1,6 @@
 //TODO(chebert): This all needs to be in a function.
 
-CreatePlatform = function(x, w, y, h, component) {
+function CreatePlatform(x, w, y, h, component) {
    component = component || "";
    var platform = Crafty.e("2D, Canvas, Color, Platform")
          .color("black")
@@ -11,9 +11,9 @@ CreatePlatform = function(x, w, y, h, component) {
 
 var row_count = 16;
 var col_count = 12;
-var grid_width = screen_width / col_count;
-var grid_height = screen_height / row_count;
-CreateGridPlatform = function(row, col, width, height, component) {
+var grid_width = 32;
+var grid_height = 32;
+function CreateGridPlatform(row, col, width, height, component) {
    var x = col * grid_width;
    var y = row * grid_height;
    var w = width * grid_width;
@@ -21,7 +21,7 @@ CreateGridPlatform = function(row, col, width, height, component) {
    return CreatePlatform(x, w, y, h, component);
 };
 
-CreateFloor = function(component) {
+function CreateFloor(component) {
    return CreateGridPlatform(row_count-2, 0, col_count, 2, component);
 };
 

@@ -1,5 +1,6 @@
 Crafty.sprite(32, '/graphics/env.png', {'switch-off': [0, 0],
-                                        'switch-on': [1, 0]});
+                                        'switch-on': [1, 0],
+                                        'vines': [2, 0]});
 
 window.switchIds = 0;
 
