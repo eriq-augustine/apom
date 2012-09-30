@@ -19,7 +19,6 @@ function initBaddies() {
    });
 }
 
-// TODO(icco): Why not Crafty.addEntityFactory('Roamer', function() { ?
 function newRoamer(x, y) {
    var height = 32;
    var width = 32;

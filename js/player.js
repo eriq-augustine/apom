@@ -101,7 +101,8 @@ function initPlayer() {
          },
          die: function() {
             // TODO: Actually kill player
-            console.log('DIE!');
+            document.getElementById('deaths').innerText =
+               parseInt(document.getElementById('deaths').innerText) + 1;
          }
    });
 }
