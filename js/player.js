@@ -100,9 +100,12 @@ function initPlayer() {
             return this;
          },
          die: function() {
-            // TODO: Actually kill player
             document.getElementById('deaths').innerText =
                parseInt(document.getElementById('deaths').innerText) + 1;
+
+            // This restarts the scene.
+            // TODO: Figure out how to get current scene name.
+            Crafty.scene("test_stage");
          }
    });
 }
