@@ -12,14 +12,12 @@ function initBaddies() {
          this.timeout(this.tick, 2000);
       },
       tick: function() {
-         console.log('tick');
          this.move('w', 10);
-         this.timeout(this.tick, 3000*Math.random());
+         this.timeout(this.tick, 2500*Math.random());
       }
    });
 }
 
-// TODO(icco): Why not Crafty.addEntityFactory('Roamer', function() { ?
 function newRoamer(x, y) {
    var height = 32;
    var width = 32;
