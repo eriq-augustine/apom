@@ -23,17 +23,23 @@ Crafty.scene("test_stage", function() {
 
    var floor = Crafty.e("2D, Canvas, Color, Collision, Floor")
          .color("blue")
-         .attr({h:30, w:1000, x:0, y:380 });
+         .attr({h:30, w:1000, x:0, y:380});
 
    var door = Crafty.e("2D, Canvas, Color, door, solid")
          .color("pink")
-         .attr({h:100, w:20, x:200, y:280 });
+         .attr({h:100, w:20, x:200, y:280});
 
    Crafty.e('2D, Canvas, vines')
-         .attr({h:300, w:50, x:400, y:80 });
+         .attr({h:300, w:50, x:400, y:80});
 
    Crafty.e('2D, Canvas, spikes, moving-spikes, trap')
-         .attr({h:32, w:32, x:500, y:348 });
+         .attr({h:32, w:32, x:500, y:348});
+
+   Crafty.e('2D, Canvas, saw, spinning-saw, trap')
+         .attr({h:32, w:32, x:550, y:250});
+
+   Crafty.e('2D, Canvas, cactus, punching-cactus, trap')
+         .attr({h:64, w:64, x:600, y:316});
 
    // Add the switch
    loadDoorSwitch(pica, 100, 350, door);
