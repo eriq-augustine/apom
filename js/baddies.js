@@ -1,23 +1,9 @@
-function initRoamer() {
-   Crafty.sprite(32, '/graphics/roamer.png', {
-      'roamer1': [0, 0],
-      'roamer2': [1, 0],
-      'roamer3': [2, 0],
-      'roamer4': [3, 0]
+function initBaddies() {
+   Crafty.sprite(32, '/graphics/baddies.png', {
+      'roamer1': [0, 0]
    });
 
-   Crafty.c('roamer', {
-      init: function() {
-         this.requires("Collision");
-
-         this.onHit('pica', function() {
-            console.log(this);
-         },
-         function() {
-            console.log('exit');
-         });
-      }
-   });
+   Crafty.c('roamer');
 }
 
 // TODO(icco): Why not Crafty.addEntityFactory('Roamer', function() { ?
@@ -27,7 +13,7 @@ function newRoamer(x, y) {
    var animationName = 'roamer1';
    var animationRow = 0;
 
-   var entity = Crafty.e('2D, Canvas, Collision, roamer')
+   var entity = Crafty.e('2D, Canvas, Sprite, Collision, roamer, ' + animationName)
          .attr({'w': height, 'h': width, 'x': x, 'y': y})
          .addComponent('SpriteAnimation')
             .animate(animationName, 0, animationRow, 3)
