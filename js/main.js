@@ -20,7 +20,8 @@ document.addEventListener('DOMContentLoaded', function () {
    initPlayer();
 
    //Crafty.scene("test_stage");
-   Crafty.scene("stage_01");
+   //Crafty.scene("stage_01");
+   Crafty.scene("stage_03");
 });
 
 function nextLevel() {
@@ -32,27 +33,27 @@ function restartLevel() {
 }
 
 Crafty.scene("test_stage", function() {
-   //TEST
-   console.log("TEST");
-   loadLevel(window.level1);
-   return;
-
    //loadPica('pixel-pica', 10, 10);
    //var pica = loadPica('legs-pica', 10, 100);
    var pica = loadPica('hands-pica', 10, 100);
 
+/*
    newRoamer(150, 10);
    newRoamer(350, 10);
    newRoamer(450, 10);
    newRoamer(650, 10);
+*/
 
    var floor = Crafty.e("2D, " + window.renderMethod + ", Color, Collision, Floor")
          .color("blue")
          .attr({h:30, w:1000, x:0, y:380});
 
-   var door = Crafty.e("2D, " + window.renderMethod + ", Color, door, solid")
-         .color("pink")
-         .attr({h:100, w:20, x:200, y:280});
+   var door = Crafty.e("2D, " + window.renderMethod + ", Color, door, door-a, solid")
+         .attr({h:32, w:32, x:200, y:348});
+   var door = Crafty.e("2D, " + window.renderMethod + ", Color, door, door-a, solid")
+         .attr({h:32, w:32, x:200, y:316});
+   var door = Crafty.e("2D, " + window.renderMethod + ", Color, door, door-a, solid")
+         .attr({h:32, w:32, x:200, y:284});
 
    Crafty.e('2D, ' + window.renderMethod + ', vines')
          .attr({h:300, w:50, x:400, y:80});
@@ -67,7 +68,7 @@ Crafty.scene("test_stage", function() {
          .attr({h:32, w:32, x:600, y:348});
 
    // Add the switch
-   loadDoorSwitch(pica, 100, 350, door);
+   Crafty.e("2D, " + window.renderMethod + ", switch-a, switch-off").attr({'w': 16, 'h': 16, 'x': 100, 'y': 350});
 });
 
 Crafty.scene("loading", function() {

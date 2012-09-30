@@ -7,7 +7,8 @@ function initEnv() {
                                            'cactus': [0, 3],
                                            'platform': [2, 3],
                                            'start': [3, 3],
-                                           'goal': [3, 0]});
+                                           'goal': [3, 0],
+                                           'door': [0, 4]});
 
    Crafty.c('moving-spikes', {
       init: function() {
@@ -36,17 +37,4 @@ function initEnv() {
    // Anything that hurts you.
    // Pica will take care of the colision callback.
    Crafty.c('trap');
-}
-
-function loadDoorSwitch(pica, x, y, targetDoor) {
-   Crafty.e("2D, " + window.renderMethod + ", switch-off").attr({'w': 16, 'h': 16, 'x': x, 'y': y});
-
-   pica.addComponent("Collision").onHit("switch-off", function(hit) {
-      // Replace the old switch
-      hit[0].obj.destroy();
-      Crafty.e("2D, " + window.renderMethod + ", switch-on").attr({'w': 16, 'h': 16, 'x': x, 'y': y});
-
-      // Remove the door
-      targetDoor.destroy();
-   });
 }

@@ -60,6 +60,24 @@ function initPlayer() {
                this.die();
             });
 
+            // This is a bit hacky and assumes at most two switches.
+            this.onHit('switch-a', function(hit) {
+               Crafty.e("2D, " + window.renderMethod + ", switch-on")
+                     .attr({'w': hit[0].obj.w, 'h': hit[0].obj.h, 'x': hit[0].obj.x, 'y': hit[0].obj.y});
+               hit[0].obj.destroy();
+
+               // Remove all 'A' doors.
+               Crafty('door-a').destroy();
+            });
+            this.onHit('switch-b', function(hit) {
+               Crafty.e("2D, " + window.renderMethod + ", switch-on")
+                     .attr({'w': hit[0].obj.w, 'h': hit[0].obj.h, 'x': hit[0].obj.x, 'y': hit[0].obj.y});
+               hit[0].obj.destroy();
+
+               // Remove all 'B' doors.
+               Crafty('door-b').destroy();
+            });
+
             this.bind('EnterFrame', function() {
                if (this.hasHands && this.onVines) {
                   if (upIsDown() && !downIsDown()) {
