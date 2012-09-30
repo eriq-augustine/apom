@@ -103,9 +103,7 @@ function initPlayer() {
             document.getElementById('deaths').innerText =
                parseInt(document.getElementById('deaths').innerText) + 1;
 
-            // This restarts the scene.
-            // TODO: Figure out how to get current scene name.
-            Crafty.scene("test_stage");
+            Crafty.scene(window.scene);
          }
    });
 }
@@ -135,23 +133,26 @@ function loadPica(type, x, y) {
    return pica;
 }
 
+window.picaSmallJump = 3.7;
+window.picaLargeJump = 5.5;
+
 function loadPixelPica(x, y) {
-   return loadBasePica(16, 16, x, y, 3.7, 3, 'pixel-pica', 'pixel-bling', 0)
+   return loadBasePica(16, 16, x, y, window.picaSmallJump, 3, 'pixel-pica', 'pixel-bling', 0)
 }
 
 function loadLegsPica(x, y) {
-   return loadBasePica(32, 32, x, y, 5, 5, 'legs-pica', 'leg-run', 1)
+   return loadBasePica(32, 32, x, y, window.picaLargeJump, 5, 'legs-pica', 'leg-run', 1)
 }
 
 function loadHeadPica(x, y) {
-   var pica = loadBasePica(32, 32, x, y, 5, 5, 'head-pica', 'head-run', 2)
+   var pica = loadBasePica(32, 32, x, y, window.picaLargeJump, 5, 'head-pica', 'head-run', 2)
          .head();
 
    return pica;
 }
 
 function loadHandsPica(x, y) {
-   var pica = loadBasePica(32, 32, x, y, 5, 5, 'hands-pica', 'hand-run', 3)
+   var pica = loadBasePica(32, 32, x, y, window.picaLargeJump, 5, 'hands-pica', 'hand-run', 3)
          .head()
          .hands();
 
