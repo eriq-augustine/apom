@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
    //Crafty.scene("test_stage");
    //Crafty.scene("stage_01");
-   Crafty.scene("stage_03");
+   Crafty.scene("stage_04");
 });
 
 function nextLevel() {
@@ -98,5 +98,5 @@ Crafty.scene("stage_03",function() {
 Crafty.scene("stage_04",function() {
    window.level = 4;
    startGoal = loadLevel(window.level4);
-   var pica = loadPica('head-pica', startGoal.start.col * 32, startGoal.start.row * 32);
+   var pica = loadPica('hands-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });
