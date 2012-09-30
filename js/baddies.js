@@ -26,7 +26,7 @@ function newRoamer(x, y) {
    var animationName = 'roamer';
    var animationRow = 0;
 
-   var entity = Crafty.e('2D, Canvas, Sprite, patrol, baddie, ' + animationName)
+   var entity = Crafty.e('2D, ' + window.renderMethod + ', Sprite, patrol, baddie, ' + animationName)
          .attr({'w': height, 'h': width, 'x': x, 'y': y})
          .addComponent('SpriteAnimation')
             .animate(animationName, 0, animationRow, 3)

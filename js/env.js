@@ -36,12 +36,12 @@ function initEnv() {
 }
 
 function loadDoorSwitch(pica, x, y, targetDoor) {
-   Crafty.e("2D, Canvas, switch-off").attr({'w': 16, 'h': 16, 'x': x, 'y': y});
+   Crafty.e("2D, " + window.renderMethod + ", switch-off").attr({'w': 16, 'h': 16, 'x': x, 'y': y});
 
    pica.addComponent("Collision").onHit("switch-off", function(hit) {
       // Replace the old switch
       hit[0].obj.destroy();
-      Crafty.e("2D, Canvas, switch-on").attr({'w': 16, 'h': 16, 'x': x, 'y': y});
+      Crafty.e("2D, " + window.renderMethod + ", switch-on").attr({'w': 16, 'h': 16, 'x': x, 'y': y});
 
       // Remove the door
       targetDoor.destroy();
