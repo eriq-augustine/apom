@@ -136,7 +136,7 @@ function loadPica(type, x, y) {
 }
 
 function loadPixelPica(x, y) {
-   return loadBasePica(16, 16, x, y, 2, 3, 'pixel-pica', 'pixel-bling', 0)
+   return loadBasePica(16, 16, x, y, 3.7, 3, 'pixel-pica', 'pixel-bling', 0)
 }
 
 function loadLegsPica(x, y) {
@@ -160,7 +160,7 @@ function loadHandsPica(x, y) {
 
 function loadBasePica(height, width, x, y, jumpSpeed, runSpeed, picaType, animationName, animationRow) {
    var pica = Crafty.e("2D, " + window.renderMethod + ", pica, Sprite, " + picaType)
-         .attr({'w': height, 'h': width, 'x': x, 'y': y})
+         .attr({'h': height, 'w': width, 'x': x, 'y': y})
          .addComponent("Twoway")
          .twoway(runSpeed, jumpSpeed)
          .addComponent('SpriteAnimation')
