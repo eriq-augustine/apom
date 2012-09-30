@@ -57,11 +57,18 @@ function initPlayer() {
 
             this.bind('EnterFrame', function() {
                if (this.hasHands && this.onVines) {
-                  if (upIsDown() && !downIsDown())
+                  if (upIsDown() && !downIsDown()) {
                      this.y -= this._speed;
-                  else if (downIsDown() && !upIsDown())
+                  } else if (downIsDown() && !upIsDown()) {
                      this.y += this._speed;
+                  }
                }
+
+               // Take care of the camera.
+               // Note that this is more cpu intensive then normal, but it is not buggy.
+               // viewport.follow() does not work right, and neither does having this in Moved.
+               Crafty.viewport.scroll('_x', -(this.x + (this.w / 2) - (Crafty.viewport.width / 2) ));
+               Crafty.viewport.scroll('_y', -(this.y + (this.h / 2) - (Crafty.viewport.height / 2) ));
             });
 
             // Sprite changing event
@@ -81,6 +88,7 @@ function initPlayer() {
                if (this.hit('solid')) {
                   this.attr({'x': from.x, 'y': from.y});
                }
+
             });
          },
          hands: function() {
@@ -147,13 +155,15 @@ function loadHandsPica(x, y) {
 }
 
 function loadBasePica(height, width, x, y, jumpSpeed, runSpeed, picaType, animationName, animationRow) {
-   var pica = Crafty.e("2D, Canvas, pica, Sprite, " + picaType)
+   var pica = Crafty.e("2D, " + window.renderMethod + ", pica, Sprite, " + picaType)
          .attr({'w': height, 'h': width, 'x': x, 'y': y})
          .addComponent("Twoway")
          .twoway(runSpeed, jumpSpeed)
          .addComponent('SpriteAnimation')
          .animate(animationName, 0, animationRow, 3)
          .animate(animationName, 30, -1);
+
+   pica.z = 100;
 
    return pica;
 }

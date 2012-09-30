@@ -2,7 +2,7 @@
 
 function CreatePlatform(x, w, y, h, component) {
    component = component || "";
-   var platform = Crafty.e("2D, Canvas, Color, Platform")
+   var platform = Crafty.e("2D, " + window.renderMethod + ", Color, Platform")
          .color("black")
          .attr({h:h, y:y, w:w, x:x});
    platform.addComponent(component);
