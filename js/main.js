@@ -15,16 +15,33 @@ document.addEventListener('DOMContentLoaded', function () {
 
    document.getElementById('cjs_version').innerText = Crafty.getVersion();
 
+   Crafty.audio.add('level1', '/audio/1/apom1.mp3');
+   Crafty.audio.add('level2', '/audio/2/apom2.mp3');
+   Crafty.audio.add('level3', '/audio/3/apom3.mp3');
+   // For some reason, loading all the audio files breaks, but just mp3 works.
+   /*
+   Crafty.audio.add('level1', ['/audio/1/apom1.mp3',
+                               '/audio/1/apom1.ogg',
+                               '/audio/1/apom1.wav']);
+   Crafty.audio.add('level2', ['/audio/1/apom2.ogg',
+                               '/audio/1/apom2.mp3',
+                               '/audio/1/apom2.wav']);
+   Crafty.audio.add('level3', ['/audio/1/apom3.ogg',
+                               '/audio/1/apom3.mp3',
+                               '/audio/1/apom3.wav']);
+                               */
+
    initEnv();
    initBaddies();
    initPlayer();
 
    //Crafty.scene("test_stage");
    //Crafty.scene("stage_01");
-   Crafty.scene("stage_04");
+   Crafty.scene("stage_01");
 });
 
 function nextLevel() {
+   Crafty.audio.stop();
    Crafty.scene("stage_0" + (window.level + 1));
 }
 
@@ -79,24 +96,29 @@ Crafty.scene("loading", function() {
 
 Crafty.scene("stage_01",function() {
    window.level = 1;
+   Crafty.audio.play('level1', -1, 1);
    startGoal = loadLevel(window.level1);
    var pica = loadPica('pixel-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });
 
 Crafty.scene("stage_02",function() {
    window.level = 2;
+   Crafty.audio.play("level2", -1);
    startGoal = loadLevel(window.level2);
    var pica = loadPica('legs-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });
 
 Crafty.scene("stage_03",function() {
    window.level = 3;
+   Crafty.audio.play("level3", -1);
    startGoal = loadLevel(window.level3);
    var pica = loadPica('head-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });
 
 Crafty.scene("stage_04",function() {
    window.level = 4;
+   //TODO(eriq): Music for the 4th level
+   Crafty.audio.play("level3", -1);
    startGoal = loadLevel(window.level4);
    var pica = loadPica('hands-pica', startGoal.start.col * 32, startGoal.start.row * 32);
 });

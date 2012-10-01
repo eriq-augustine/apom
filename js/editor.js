@@ -60,8 +60,8 @@ loadOnClick = function() {
 }
 
 saveOnClick = function() {
-   var rows = 12;
-   var cols = 16;
+   var rows = document.getElementById('numRows').value;
+   var cols = document.getElementById('numCols').value;
    var level = {};
    level.rows = rows;
    level.cols = cols;
